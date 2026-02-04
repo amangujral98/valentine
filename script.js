@@ -56,26 +56,26 @@ noBtn.addEventListener("click", () => {
 yesBtn.addEventListener("click", () => {
   response.innerText = `Excellent choice ${emoji} Your Valentine is smiling right now.`;
 
-  // 🎍 Confetti
+  // 🎆 Confetti
   confetti({
     particleCount: 120,
     spread: 70,
     origin: { y: 0.6 }
   });
 
-  // Fade out image
-  photo.classList.add("fade-out");
+  // 🔒 Hard fade-out (bulletproof)
+  photo.style.transition = "opacity 0.6s ease-in-out";
+  photo.style.opacity = "0";
 
   setTimeout(() => {
-    // Swap to approval image
+    // Swap image
     photo.src = YES_IMAGE;
 
-    // Fade in
-    photo.classList.remove("fade-out");
-    photo.classList.add("fade-in");
-  }, 500);
+    // 🔓 Fade back in
+    photo.style.opacity = "1";
+  }, 600);
 
-  // Lock buttons after approval
   yesBtn.disabled = true;
   noBtn.disabled = true;
 });
+
