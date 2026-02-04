@@ -1,12 +1,12 @@
 // -----------------------------
-// CONFIGURATION (EDIT ONLY HERE)
+// IMAGE CONFIG (FROM images FOLDER)
 // -----------------------------
 
-const ASK_IMAGE = "ask.jpg";   // Image shown before approval
-const YES_IMAGE = "yes.jpg";   // Image shown after approval
+const ASK_IMAGE = "images/ask.jpg"; // before approval
+const YES_IMAGE = "images/yes.jpg"; // after approval
 
 // -----------------------------
-// URL PERSONALIZATION (NAME + EMOJI)
+// URL PERSONALIZATION
 // -----------------------------
 
 const params = new URLSearchParams(window.location.search);
@@ -14,7 +14,7 @@ const name = params.get("name") || "You";
 const emoji = params.get("emoji") || "💖";
 
 // -----------------------------
-// APPLY INITIAL STATE
+// ELEMENT REFERENCES
 // -----------------------------
 
 const nameEl = document.getElementById("name");
@@ -23,11 +23,15 @@ const response = document.getElementById("response");
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 
+// -----------------------------
+// INITIAL STATE
+// -----------------------------
+
 nameEl.innerText = `Dear ${name},`;
-photo.src = `images/${ASK_IMAGE}`;
+photo.src = ASK_IMAGE;
 
 // -----------------------------
-// NO BUTTON LOGIC (RUN AWAY)
+// NO BUTTON (RUN AWAY LOGIC)
 // -----------------------------
 
 let noClickCount = 0;
@@ -46,32 +50,32 @@ noBtn.addEventListener("click", () => {
 });
 
 // -----------------------------
-// YES BUTTON LOGIC (CONFETTI + FADE + IMAGE SWAP)
+// YES BUTTON (CONFETTI + FADE + SWAP)
 // -----------------------------
 
 yesBtn.addEventListener("click", () => {
   response.innerText = `Excellent choice ${emoji} Your Valentine is smiling right now.`;
 
-  // 🎆 Confetti
+  // 🎍 Confetti
   confetti({
     particleCount: 120,
     spread: 70,
     origin: { y: 0.6 }
   });
 
-  // ✨ Fade out
+  // Fade out image
   photo.classList.add("fade-out");
 
   setTimeout(() => {
-    // Swap image
-    photo.src = `images/${YES_IMAGE}`;
+    // Swap to approval image
+    photo.src = YES_IMAGE;
 
-    // Fade back in
+    // Fade in
     photo.classList.remove("fade-out");
     photo.classList.add("fade-in");
   }, 500);
 
-  // Optional: disable buttons after acceptance
+  // Lock buttons after approval
   yesBtn.disabled = true;
   noBtn.disabled = true;
 });
