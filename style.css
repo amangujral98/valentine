@@ -67,3 +67,16 @@ button {
   margin-top: 20px;
   font-style: italic;
 }
+
+/* Fade animation for image swap */
+#photo {
+  transition: opacity 0.6s ease-in-out;
+}
+
+.fade-out {
+  opacity: 0;
+}
+
+.fade-in {
+  opacity: 1;
+}
