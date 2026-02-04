@@ -54,6 +54,8 @@ noBtn.addEventListener("click", () => {
 // -----------------------------
 
 yesBtn.addEventListener("click", () => {
+  console.log("YES CLICKED – IMAGE SHOULD SWAP");
+
   response.innerText = `Excellent choice ${emoji} Your Valentine is smiling right now.`;
 
   // 🎆 Confetti
@@ -78,4 +80,5 @@ yesBtn.addEventListener("click", () => {
   yesBtn.disabled = true;
   noBtn.disabled = true;
 });
+
 
